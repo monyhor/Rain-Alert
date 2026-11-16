@@ -7,13 +7,14 @@ MY_LONG = os.environ.get("LONG")
 MY_API_KEY = os.environ.get("OWM_API")
 MY_GMAIL = os.environ.get("MY_EMAIL")
 MY_PASS = os.environ.get("MY_PASSWORD")
-
+RECEIVER = os.environ.get("RECEIVER_EMAIL")
 parameters = {
     "lat" : MY_LAT,
     "lon" : MY_LONG,
     "cnt" : 4,
     "appid" : MY_API_KEY
 }
+
 response = requests.get("https://api.openweathermap.org/data/2.5/forecast", params = parameters)
 response.raise_for_status()
 data = response.json()['list']
@@ -29,7 +30,7 @@ if willRain:
         connection.login(MY_GMAIL , MY_PASS)
         connection.sendmail(
             from_addr = MY_GMAIL,
-            to_addrs = RECEIVER_EMAIL,
+            to_addrs = RECEIVER,
             msg = "Subject: Weather is Rainy!\n\n"
                 "Please bring your umbrella!"
         )
