@@ -1,10 +1,10 @@
 import requests
 import os
 import smtplib
-MY_LAT =11.556374
+MY_LAT = 11.556374
 MY_LONG = 104.928207
 MY_API_KEY = os.environ.get("OWM_API")
-MY_PASS = os.environ.get("API_KEY")
+MY_PASS = os.environ.get("MY_PASSWORD")
 parameters = {
     "lat" : MY_LAT,
     "lon" : MY_LONG,
@@ -23,10 +23,10 @@ for item in listofWeather:
 if willRain:
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
-        connection.login("monyhor06@gmail.com" , MY_PASS)
+        connection.login(MY_EMAIL , MY_PASS)
         connection.sendmail(
-            from_addr = "monyhor06@gmail.com",
-            to_addrs = "monyhor9@gmail.com",
+            from_addr = MY_EMAIL,
+            to_addrs = RECEIVER_EMAIL,
             msg = "Subject: Weather is Rainy!\n\n"
                 "Please bring your umbrella!"
         )
