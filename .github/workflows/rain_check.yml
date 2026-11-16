@@ -1,1 +1,32 @@
+name: Daily Rain Check
 
+on:
+  schedule:
+    # Runs at 00:00 UTC every day (which is 7:00 AM UTC+7 / Phnom Penh time)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows you to click a button to test it manually
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run rain alert script
+        env:
+          MY_LAT: ${{ secrets.LAT }}
+          MY_LON: ${{ secrets.LONG }}
+          MY_API_KEY: ${{ secrets.OWM_API }}
+          MY_GMAIL: ${{ secrets.MY_EMAIL }}
+          MY_PASS: ${{ secrets.MY_PASSWORD }}
+          RECEIVER: ${{ secrets.RECEIVER_EMAIL }}
+        run: python main.py
