@@ -2,12 +2,12 @@ import requests
 import os
 import smtplib
 
-MY_LAT = os.environ.get("LAT")
-MY_LONG = os.environ.get("LONG")
-MY_API_KEY = os.environ.get("OWM_API")
-MY_GMAIL = os.environ.get("MY_EMAIL")
-MY_PASS = os.environ.get("MY_PASSWORD")
-RECEIVER = os.environ.get("RECEIVER_EMAIL")
+MY_LAT = os.environ.get("MY_LAT")
+MY_LONG = os.environ.get("MY_LON")
+MY_API_KEY = os.environ.get("MY_API_KEY")
+MY_GMAIL = os.environ.get("MY_GMAIL")
+MY_PASS = os.environ.get("MY_PASS")
+RECEIVER = os.environ.get("RECEIVER")
 parameters = {
     "lat" : MY_LAT,
     "lon" : MY_LONG,
